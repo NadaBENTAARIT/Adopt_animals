@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PET SHOP - Pet Shop Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+
+
+
+
+    <!-- Favicon -->
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+
+    <!-- Icon Font Stylesheet -->
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+
+    <style>
+        .card-image {
+            height: 200px;
+            /* ou n'importe quelle hauteur que vous voulez utiliser pour toutes les images */
+            object-fit: cover;
+            object-position: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+        <a href="/ListAllProducts" class="navbar-brand ms-lg-5">
+            <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Shop</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="/ListAllProducts" class="nav-item nav-link active">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">Products</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/ListAllAnimals" class="dropdown-item ">Animals</a>
+                        <a href="/ListAllFood" class="dropdown-item ">Food</a>
+                        <a href="/ListAllAccessories" class="dropdown-item">Accesories</a>
+
+                    </div>
+                </div>
+
+
+
+
+                {% if logged_in %}
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Donate</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/donateanimals" class="dropdown-item">Donate animals</a>
+                        <a href="/donatefood" class="dropdown-item">Donate food</a>
+                        <a href="/donateaccessories" class="dropdown-item">Donate accesories</a>
+
+
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <img
+                            src="static/img/icone_login.png" class="img-fluid" style="width: 35px; height: 35px;">
+                        {{ session['username'] }}</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/signout" class="dropdown-item">Log out</a>
+                        <a href="/ListAllPosts" class="dropdown-item">My posts</a>
+                        <a href="/ListAllFavorites" class="dropdown-item">My favorites</a>
+                        <a href="/ListAllMessages" class="dropdown-item ">My messages</a>
+
+
+
+                    </div>
+                </div>
+                {% else %}
+
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Donate</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/signin" class="dropdown-item">Donate animals</a>
+                        <a href="/signin" class="dropdown-item">Donate food</a>
+                        <a href="/signin" class="dropdown-item">Donate accesories</a>
+
+
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My account</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/signin" class="dropdown-item">Sign in</a>
+                        <a href="/signup" class="dropdown-item">Sign up</a>
+                        <a href="/ListAllPosts" class="dropdown-item disabled">My posts</a>
+                        <a href="/ListAllFavorites" class="dropdown-item disabled">My favorites</a>
+
+                        <a href="/ListAllMessages" class="dropdown-item disabled ">My messages</a>
+
+                    </div>
+                </div>
+
+                {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar End -->
+
+
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded"
+                            src="{{ url_for('static', filename='img/about.jpg') }}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="border-start border-5 border-primary ps-5 mb-5">
+                        <h3 class="text-primary ">About Us</h3>
+                        <h5>We keep your pets happy all time</h5>
+                    </div>
+                    <h6 class="text-body mb-4">"Until one has loved an animal, a part of one's soul remains unawakened."
+                        - Anatole France
+                    </h6>
+                    <div class="bg-light p-4">
+                        <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link  w-100 active" id="pills-1-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1"
+                                    aria-selected="true">Our Mission</button>
+                            </li>
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link  w-100" id="pills-2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2"
+                                    aria-selected="false">Your Vision</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                aria-labelledby="pills-1-tab">
+                                <p class="mb-0">Our mission serves to donate animals without money would be to provide
+                                    homes for animals in need by offering adoption services without charging any fees.
+                                    This type of pet shop would aim to promote animal welfare and reduce the number of
+                                    animals that are euthanized due to overcrowded shelters or lack of resources.
+                                    Additionally, such a pet shop may also prioritize educating potential pet owners
+                                    about responsible pet ownership, including providing proper care and attention to
+                                    their new pet. The ultimate goal would be to create happy and healthy homes for
+                                    animals in need, while also building a compassionate community of pet owners.
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                                <p class="mb-0">Our vision is to donate animals without money would be to create a world
+                                    where every animal has a loving home and is treated with the care and respect they
+                                    deserve. This type of pet shop would strive to eliminate the need for euthanasia due
+                                    to overcrowding or lack of resources by providing a sustainable solution through
+                                    adoption and education. The vision would include a community of animal lovers who
+                                    work together to ensure that every animal has a safe and comfortable place to call
+                                    home. This pet shop would prioritize the well-being of animals above all else, and
+                                    would work tirelessly to create a world where every animal is valued and loved.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- Animals Start -->
+
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                <h3 class="text-primary">Animals</h3>
+                <h5> Your best friends</h5>
+            </div>
+            <div class="owl-carousel product-carousel" data-loop="false" data-nav-text="next">
+                {% if animals %}
+                {% for animal in animals %}
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 card-image" src="data:image/jpeg;base64,{{animal['encoded_image']}}"
+                            alt="">
+
+                        <h5>{{animal['name']}}</h5>
+                        <p>{{ animal['description'][:10] ~ '...' }}</p>
+                        <div class="d-flex mb-3">
+                            <small class="me-3"><i class="bi bi-geo-alt me-2"
+                                    title="published governorate"><br></i>{{animal['governorate']}}</small>
+                            <small class="ms-auto"><i class="bi bi-calendar-date me-2" title="published date">
+                                    <br></i>{{animal['date']}}</small>
+                        </div>
+
+
+
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3"
+                                href="{{ url_for('addfavorites', id_product=animal['id']) }}"><i class="bi bi-heart"
+                                    title="Add to my favorites"></i></a>
+                            <a class="btn btn-primary py-2 px-3"
+                                href="{{ url_for('ProductDetails', id_product=animal['id']) }}"><i class="bi bi-eye"
+                                    title="See more details"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+                {% else %}
+                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffr%2Ficone-gratuite%2Faucun-resultat_6281748&psig=AOvVaw1HebMk9eIux_M0BdgEyrJI&ust=1681857565786000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMjNsur9sf4CFQAAAAAdAAAAABAE"
+                    alt="No results found" style="max-width: 200px; margin-bottom: 20px;">
+                {% endif %}
+
+
+                <script>$(document).ready(function () {
+                        var owl = $('.product-carousel');
+                        owl.owlCarousel({
+                            items: 4,
+                            margin: 20,
+                            loop: false,
+                            nav: true,
+                            navText: ['<i class="bi bi-chevron-left" title="Previous"></i>', '<i class="bi bi-chevron-right" title="Next"></i>'],
+                        });
+
+                        // Disable "next" button if all items have been displayed
+                        owl.on('changed.owl.carousel', function (event) {
+                            if (event.item.index + 4 == event.item.count) {
+                                $('.owl-next').addClass('disabled');
+                            } else {
+                                $('.owl-next').removeClass('disabled');
+                            }
+                        });
+                    });</script>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Animals End -->
+
+
+    <!-- Food Start -->
+
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                <h3 class="text-primary ">Food</h3>
+                <h5>Food for your best friends</h5>
+            </div>
+            <div class="owl-carousel product-carousel" data-loop="false" data-nav="true" data-nav-text="next">
+                {% if foods %}
+                {% for food in foods %}
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 card-image style="object-fit: cover;" src="data:image/jpeg;base64,{{food['encoded_image']}}" alt="">
+                        <h5>{{food['name']}}</h5>
+                        <p>{{ food['description'][:10] ~ '...' }}</p>
+                        <div class="d-flex mb-3">
+                            <small class="me-3"><i class="bi bi-geo-alt me-2"
+                                    title="published governorate"><br></i>{{food['governorate']}}</small>
+                            <small class="ms-auto"><i class="bi bi-calendar-date me-2" title="published date">
+                                    <br></i>{{food['date']}}</small>
+                        </div>
+                
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3"
+                                href="{{ url_for('addfavorites', id_product=food['id']) }}"><i class="bi bi-heart"
+                                    title="Add to my favorites"></i></a>
+                            <a class="btn btn-primary py-2 px-3"
+                                href="{{ url_for('ProductDetails', id_product=food['id']) }}"><i class="bi bi-eye"
+                                    title="See more details"></i></a>
+                
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+                {% else %}
+                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffr%2Ficone-gratuite%2Faucun-resultat_6281748&psig=AOvVaw1HebMk9eIux_M0BdgEyrJI&ust=1681857565786000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMjNsur9sf4CFQAAAAAdAAAAABAE"
+                    alt="No results found" style="max-width: 200px; margin-bottom: 20px;">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Food End -->
+
+    <!-- Accessories Start -->
+
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                <h3 class="text-primary ">Accessories</h3>
+                <h5>Accessories for your best friends</h5>
+            </div>
+            <div class="owl-carousel product-carousel" data-loop="false" data-nav="true" data-nav-text="next">
+                {% if accessories %}
+                {% for accessory in accessories %}
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4" src="data:image/jpeg;base64,{{accessory['encoded_image']}}" alt="">
+
+
+
+                        <h5>{{accessory['name']}}</h5>
+                        <p>{{ accessory['description'][:10] ~ '...' }}</p>
+                        <div class="d-flex mb-3">
+                            <small class="me-3"><i class="bi bi-geo-alt me-2"
+                                    title="published governorate"><br></i>{{accessory['governorate']}}</small>
+                            <small class="ms-auto"><i class="bi bi-calendar-date me-2" title="published date">
+                                    <br></i>{{accessory['date']}}</small>
+                        </div>
+                        <!-- Ajouter une balise script pour inclure le code JavaScript -->
+                        <script type="text/javascript">
+                            // Fonction pour afficher la fenêtre modale
+                            function showModal() {
+                                // Récupérer la balise modale
+                                var modal = document.getElementById("myModal");
+                                // Afficher la fenêtre modale
+                                modal.style.display = "block";
+                                // Fermer la fenêtre modale après 2 secondes
+                                setTimeout(function () {
+                                    modal.style.display = "none";
+                                }, 2000);
+                            }
+                        </script>
+
+                        <!-- Ajouter une balise modale pour afficher le message d'ajout -->
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Le produit a été ajouté à vos favoris !</p>
+                            </div>
+                        </div>
+
+                        <!-- Ajouter un bouton pour ajouter le produit aux favoris et appeler la fonction showModal() -->
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3"
+                                href="{{ url_for('addfavorites', id_product=accessory['id']) }}"><i class="bi bi-heart"
+                                    title="Add to my favorites"></i></a>
+                            <a class="btn btn-primary py-2 px-3"
+                                href="{{ url_for('ProductDetails', id_product=accessory['id']) }}"><i class="bi bi-eye"
+                                    title="See more details"></i></a>
+
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffr%2Ficone-gratuite%2Faucun-resultat_6281748&psig=AOvVaw1HebMk9eIux_M0BdgEyrJI&ust=1681857565786000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMjNsur9sf4CFQAAAAAdAAAAABAE"
+                    alt="No results found" style="max-width: 200px; margin-bottom: 20px;">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Accessories End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-light mt-5 py-5">
+        <div class="container pt-3">
+            <div class="row g-5">
+                <div class="col-lg-6 col-md-12">
+
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4"><i
+                            class="bi bi-shop fs-1 text-primary me-3"></i>Pet Shop</h5>
+                    <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
+                        dolor</p>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Popular Links</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-body mb-2" href="/ListAllProducts"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                        <a class="text-body mb-2" href="/ListAllAnimals"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Animals
+                        </a>
+                        <a class="text-body mb-2" href="/ListAllFood"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Food</a>
+                        <a class="text-body mb-2" href="/ListAllAccessories"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Accessories</a>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">More informations</h5>
+                    <div class="d-flex flex-column justify-content-start">
+
+                        <a class="text-body mb-2" href="/ListAllProducts"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>About us</a>
+                        <a class="text-body mb-2" href="/Charter"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Help</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 py-3">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-white" href="#"></a>. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6  text-md-end">
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="index.html" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+version: '3'
+
+networks:
+  datapipeline:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "173.17.0.0/16"
+
+services:
+
+  
+  python:
+    image: 'python:3.7'
+    container_name: python
+    hostname: python
+    volumes:
+          - .:/workspace
+    ports:
+      - '5000:5000'
+      - '5005:5005'
+    stdin_open: true
+    tty: true
+    networks:
+      datapipeline:
+        ipv4_address: 173.17.0.6
+
+  
+  mysql:
+    image: mysql
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      datapipeline:
+        ipv4_address: 173.17.0.7
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+    ports:
+      - 8080:80
+    networks:
+      datapipeline:
+        ipv4_address: 173.17.0.8

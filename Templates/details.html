@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PET SHOP - Pet Shop Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+
+
+
+
+    <!-- Favicon -->
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+
+    <!-- Icon Font Stylesheet -->
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+        <style>#copy-phone-number.copied {
+            background-color: green;
+            color: white;
+            border-color: green;
+          }
+          #copy-phone-number.copied .far {
+            display: none;
+          }
+          #copy-phone-number.copied:before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 16px;
+            margin-right: 5px;
+          }
+          </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+        <a href="/ListAllProducts" class="navbar-brand ms-lg-5">
+            <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Shop</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="/ListAllProducts" class="nav-item nav-link">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Products</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/ListAllAnimals" class="dropdown-item ">Animals</a>
+                        <a href="/ListAllFood" class="dropdown-item ">Food</a>
+                        <a href="/ListAllAccessories" class="dropdown-item">Accesories</a>
+
+                    </div>
+                </div>
+
+
+
+
+                {% if logged_in %}
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Donate</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/donateanimals" class="dropdown-item">Donate animals</a>
+                        <a href="/donatefood" class="dropdown-item">Donate food</a>
+                        <a href="/donateaccessories" class="dropdown-item">Donate accesories</a>
+
+
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <img
+                            src="{{ url_for('static', filename='img/icone_login.png') }}" class="img-fluid"
+                            style="width: 35px; height: 35px;">
+                        {{ session['username'] }}</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/signout" class="dropdown-item">Log out</a>
+                        <a href="/ListAllPosts" class="dropdown-item">My posts</a>
+                        <a href="/ListAllFavorites" class="dropdown-item">My favorites</a>
+                        <a href="/ListAllMessages" class="dropdown-item ">My messages</a>
+
+
+
+                    </div>
+                </div>
+                {% else %}
+
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Donate</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/signin" class="dropdown-item ">Donate animals</a>
+                        <a href="/signin" class="dropdown-item">Donate food</a>
+                        <a href="/signin" class="dropdown-item">Donate accesories</a>
+
+
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> My Account</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/signin" class="dropdown-item">Sign in</a>
+                        <a href="/signup" class="dropdown-item">Sign up</a>
+                        <a href="/ListAllPosts" class="dropdown-item disabled">My posts</a>
+                        <a href="/ListAllFavorites" class="dropdown-item disabled">My favorites</a>
+
+                        <a href="/ListAllMessages" class="dropdown-item disabled">My messages</a>
+
+                    </div>
+                </div>
+
+                {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar End -->
+
+    {% if products %}
+    {% for product in products %}
+
+    <!-- Blog Start -->
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <!-- Blog Detail Start -->
+                <div class="mb-5">
+                    <img class="img-fluid w-60 rounded mb-5" src="data:image/jpeg;base64,{{product['encoded_image']}}"
+                        alt="">
+                    <h4 class=" mb-4">{{product['name']}}</h4>
+                    <p class=" mb-4">{{product['description']}}</p>
+
+                    <div style="display: flex; flex-wrap: wrap;">
+                        {% if product['category_name'] is not none %}
+
+                        <div
+                            style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 20px; padding: 10px;">
+                            <i style="font-size: 18px; margin-right: 10px;" class="fas fa-signature"> Category:</i>
+                            <span style="position: relative;">
+                                {{product['category_name']}}
+                                <span
+                                    style="visibility: hidden; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;"
+                                    class="tooltip">Category: {{product['category_name']}}</span>
+                            </span>
+                        </div>
+                        {% endif %}
+
+
+
+
+
+
+
+
+                        {% if product['subcategory_name'] is not none %}
+
+                        <div
+                            style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 20px; padding: 10px;">
+                            <i style="font-size: 18px; margin-right: 10px;" class="fas fa-paw"> Subcategory:</i>
+                            <span style="position: relative;">
+                                {{product['subcategory_name']}}
+                                <span
+                                    style="visibility: hidden; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;"
+                                    class="tooltip">{{product['subcategory_name']}}</span>
+                            </span>
+                        </div>
+                        {% endif %}
+                        {% if product['weight'] is not none %}
+
+                        <div
+                            style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 20px; padding: 10px;">
+                            <i style="font-size: 18px; margin-right: 10px;" class="fas fa-weight"> Weight:</i>
+                            <span style="position: relative;">
+                                {{product['weight']}} Kg
+                                <span
+                                    style="visibility: hidden; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;"
+                                    class="tooltip">{{product['weight']}} Kg</span>
+                            </span>
+                        </div>
+                        {% endif %}
+
+
+                        {% if product['gender'] is not none %}
+
+                        <div
+                            style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 20px; padding: 10px;">
+                            <i style="font-size: 18px; margin-right: 10px;" class="fas fa-venus-mars"> Gender:</i>
+                            <span style="position: relative;">
+                                {{product['gender']}}
+                                <span
+                                    style="visibility: hidden; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;"
+                                    class="tooltip">{{product['gender']}}</span>
+                            </span>
+                        </div>
+                        {% endif %}
+
+
+
+                        {% if product['quantity'] is not none %}
+
+                        <div
+                            style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 20px; padding: 10px;">
+                            <i style="font-size: 18px; margin-right: 10px;" class="fas fa-weight"> Quantity:</i>
+                            <span style="position: relative;">
+                                {{product['quantity']}} Kg
+                                <span
+                                    style="visibility: hidden; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;"
+                                    class="tooltip">{{product['quantity']}} Kg</span>
+                            </span>
+                        </div>
+                        {% endif %}
+
+
+
+
+                        {% if product['date_expiration'] is not none %}
+
+                        <div
+                            style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 20px; padding: 10px;">
+                            <i style="font-size: 18px; margin-right: 10px;" class="fas fa-calendar"> Date expiration:</i>
+                            <span style="position: relative;">
+                                {{product['date_expiration']}}
+                                <span
+                                    style="visibility: hidden; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;"
+                                    class="tooltip">{{product['date_expiration']}}</span>
+                            </span>
+                        </div>
+                        {% endif %}
+
+
+
+                        {% if product['color'] is not none %}
+
+                        <div
+                            style="display: flex; align-items: center; margin-right: 20px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 20px; padding: 10px;">
+                            <i style="font-size: 18px; margin-right: 10px;" class="fas fa-palette"> Color:</i>
+                            <span style="position: relative;">
+                                {{product['color']}}
+                                <span
+                                    style="visibility: hidden; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;"
+                                    class="tooltip">{{product['color']}}</span>
+                            </span>
+                        </div>
+                        {% endif %}
+
+
+                       
+
+
+
+                    </div>
+                </div>
+
+                <!-- Blog Detail End -->
+
+
+
+
+            </div>
+
+            <!-- Sidebar Start -->
+            <div class="col-lg-4">
+                <!-- Search Form Start -->
+                <div class="mb-5">
+                    <div class=" bg-white p-5">
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-4">
+                                <img class="img-fluid mx-auto rounded-circle"
+                                    src="{{ url_for('static', filename='img/icone_login.png') }}" alt="">
+
+                            </div>
+                            <hr class="w-25 mx-auto">
+                            <h5 class="text-uppercase"> {{product['client_name']}}</h5>
+                            <span> 5 donates</span>
+                        </div>
+
+                    </div>
+                    <h4 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Contact donor</h4>
+                    <div class="d-flex flex-wrap m-n1">
+                        <div class="d-flex flex-wrap m-n1">
+                            <a href="#" class="btn btn-primary m-1" id="show-phone-number"
+                                data-phone-number="+214 27 469 393"> <i class="fas fa-phone-alt mr-1"></i>Show phone
+                                number</a>
+                            <button class="btn btn-primary m-1" id="copy-phone-number" title="Copy the phone number"
+                                style="cursor: copy;">
+                                <i class="far fa-copy"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex flex-wrap m-n1">
+                        <div class="d-flex flex-wrap m-n1">
+                            <a href="#" class="btn btn-primary m-1" data-toggle="modal" data-target="#contactModal">
+                                <i class="far fa-envelope mr-1"></i> Send message
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Modale de contact -->
+                    <!-- Modale de contact -->
+                    
+                   <!-- Modale de contact -->
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Contact donator</h5>
+                <button type="button" title="close" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Need help?</h6>
+
+                <ul>
+                    <li><a href="/Charter">Have you consulted our beneficiary charter?</a></li>
+                    <li><a href="/MsgServive">How do you use our messaging service?</a></li>
+                </ul>
+
+                <!-- Formulaire de contact -->
+                <form method="POST" action="{{ url_for('SendMessage', id_client=product['id_client'],id_product=product['id']) }}">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <input type="textarea" style="height: 50px;" name="body" id="body" class="form-control bg-light border-0 px-4 py-3" rows="2" placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success message -->
+                <div id="successMessage" class="d-none alert alert-success mt-3" role="alert">
+                    Message sent successfully.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const contactForm = document.querySelector('#contactModal form');
+    const successMessage = document.querySelector('#successMessage');
+    const sendButton = document.querySelector('#contactModal button[type="submit"]');
+
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        sendButton.disabled = true;
+        sendButton.querySelector('.spinner-border').classList.remove('d-none');
+        fetch(event.target.action, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show success message and hide form
+                contactForm.classList.add('d-none');
+                successMessage.classList.remove('d-none');
+            } else {
+                alert('Failed to send message.');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert('An error occurred while sending the message.');
+        })
+        .finally(() => {
+            // Reset form and button
+            sendButton.disabled = false;
+            sendButton.querySelector('.spinner-border').classList.add('d-none');
+            contactForm.reset();
+        });
+    });
+</script>
+
+
+
+
+
+
+
+                    <script>// Récupère le bouton
+                      
+                      
+                      var showPhoneNumberBtn = document.getElementById("show-phone-number");
+
+                      // Récupère le numéro de téléphone à partir de l'attribut "data"
+                      var phoneNumber = showPhoneNumberBtn.getAttribute("data-phone-number");
+
+                      // Ajoute un écouteur d'événements sur le clic du bouton
+                      showPhoneNumberBtn.addEventListener("click", function () {
+                          // Remplace le texte du bouton par le numéro de téléphone
+                          showPhoneNumberBtn.innerText = phoneNumber;
+
+
+                      });
+                      var copyPhoneNumberBtn = document.getElementById("copy-phone-number");
+                      var phoneNumber = document.getElementById("show-phone-number").getAttribute("data-phone-number");
+
+                      // Ajoute un écouteur d'événements sur le clic du bouton de copie
+                      copyPhoneNumberBtn.addEventListener("click", function () {
+                          // Crée un élément textarea pour copier le numéro de téléphone
+                          var textarea = document.createElement("textarea");
+                          textarea.value = phoneNumber;
+                          document.body.appendChild(textarea);
+
+                          // Copie le numéro de téléphone dans le presse-papiers
+                          textarea.select();
+                          document.execCommand("copy");
+                          document.body.removeChild(textarea);
+
+
+                          // Ajoute la classe "copied" au bouton
+    copyPhoneNumberBtn.classList.add("copied");
+                      });
+
+
+                  </script>
+                    </script>
+
+
+
+                </div>
+                <!-- Search Form End -->
+
+
+
+
+
+
+
+
+
+            </div>
+            <!-- Sidebar End -->
+        </div>
+    </div>
+    <!-- Blog End -->
+    {% endfor %}
+
+    {% else %}
+    <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffr%2Ficone-gratuite%2Faucun-resultat_6281748&psig=AOvVaw1HebMk9eIux_M0BdgEyrJI&ust=1681857565786000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMjNsur9sf4CFQAAAAAdAAAAABAE"
+        alt="No results found" style="max-width: 200px; margin-bottom: 20px;">
+
+    {% endif %}
+
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-light mt-5 py-5">
+        <div class="container pt-3">
+            <div class="row g-5">
+                <div class="col-lg-6 col-md-12">
+
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4"><i
+                            class="bi bi-shop fs-1 text-primary me-3"></i>Pet Shop</h5>
+                    <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
+                        dolor</p>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Popular Links</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-body mb-2" href="/ListAllProducts"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                        <a class="text-body mb-2" href="/ListAllAnimals"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Animals
+                        </a>
+                        <a class="text-body mb-2" href="/ListAllFood"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Food</a>
+                        <a class="text-body mb-2" href="/ListAllAccessories"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Accessories</a>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">More informations</h5>
+                    <div class="d-flex flex-column justify-content-start">
+
+                        <a class="text-body mb-2" href="/ListAllProducts"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>About us</a>
+                        <a class="text-body mb-2" href="/Charter"><i
+                                class="bi bi-arrow-right text-primary me-2"></i>Help</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 py-3">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-white" href="#"></a>. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6  text-md-end">
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="details.html" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
